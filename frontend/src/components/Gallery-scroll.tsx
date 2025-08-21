@@ -130,6 +130,7 @@ export const GalleryContainer = ({
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         gap: "8px",
+        maxHeight: "70vh",
         rotateX,
         scale,
         transformStyle: "preserve-3d",
