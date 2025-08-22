@@ -11,30 +11,30 @@ import { motion } from "framer-motion";
 
 // Using different placeholder images to make it obvious which column is which
 const IMAGES_1 = [
-  "/Gallery/gl_2.JPG",
-  "/Gallery/gl_3.JPG",
-  "/Gallery/gl_4.JPG",
-  // "/Gallery/IMG_0779.JPG",
+  "/Gallery/gl_2.webp",
+  "/Gallery/gl_3.webp",
+  "/Gallery/gl_4.webp",
+  "/Gallery/IMG_0779.webp",
 ]
 
 const IMAGES_2 = [
-  "/Gallery/e-summit_6.JPG",
-  "/Gallery/e-summit_7.jpg",
-  "/Gallery/e-summit_8.jpg",
-  // "/Gallery/e-summit_9.jpg",
+  "/Gallery/e-summit_6.webp",
+  "/Gallery/e-summit_7.webp",
+  "/Gallery/e-summit_8.webp",
+  "/Gallery/e-summit_9.webp",
 ]
 
 const IMAGES_3 = [
-  "/Gallery/IMG_0879.JPG",
-  "/Gallery/teamphoto.jpg",
-  "/Gallery/IMG_6803.JPG",
-  // "/Gallery/17f37fea-9ab7-494f-827f-e84a564406f4.jpg",
+  "/Gallery/IMG_0879.webp",
+  "/Gallery/teamphoto.webp",
+  "/Gallery/IMG_6803.webp",
+  "/Gallery/17f37fea-9ab7-494f-827f-e84a564406f4.webp",
 ]
 
 const IMAGES_4 = [
-  "/Gallery/IMG_0802.JPG",
-  "/Gallery/e-summit_5.JPG",
-  "/Gallery/IMG_0804.JPG",
+  "/Gallery/IMG_0802.webp",
+  "/Gallery/e-summit_5.webp",
+  "/Gallery/IMG_0804.webp",
   
 ]
 
