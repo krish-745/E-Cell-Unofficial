@@ -1,46 +1,45 @@
-import { 
+import {
   ContainerAnimated,
   ContainerScroll,
   ContainerStagger,
   ContainerSticky,
   GalleryCol,
-  GalleryContainer 
-} from "@/components/Gallery-scroll";
+  GalleryContainer
+} from "@/components/Animated-Gallery";
+import { motion } from 'framer-motion';
 import SceneCanvas from "../three/SceneCanvas";
-import { motion } from "framer-motion";
+// import { Button } from "@/components/ui/button"
+// import { VideoIcon } from "lucide-react"
 
-// Using different placeholder images to make it obvious which column is which
 const IMAGES_1 = [
-  "/Gallery/gl_2.webp",
-  "/Gallery/gl_3.webp",
-  "/Gallery/gl_4.webp",
-  "/Gallery/IMG_0779.webp",
+  "https://i.postimg.cc/P5K61rSz/17f37fea-9ab7-494f-827f-e84a564406f4.webp",
+  "https://i.postimg.cc/Qd6bHYMf/e-summit-5.webp",
+  "https://i.postimg.cc/d0pj97rd/e-summit-6.webp",
+  "https://i.postimg.cc/wjx2xY9t/e-summit-7.webp",
 ]
 
 const IMAGES_2 = [
-  "/Gallery/e-summit_6.webp",
-  "/Gallery/e-summit_7.webp",
-  "/Gallery/e-summit_8.webp",
-  "/Gallery/e-summit_9.webp",
+  "https://i.postimg.cc/TPpcmjLf/e-summit-8.webp",
+  "https://i.postimg.cc/ZRNFsTxQ/e-summit-9.webp",
+  "https://i.postimg.cc/bwqCG29w/gl-2.webp",
+  "https://i.postimg.cc/rsSjs8d4/gl-3.webp",
 ]
 
 const IMAGES_3 = [
-  "/Gallery/IMG_0879.webp",
-  "/Gallery/teamphoto.webp",
-  "/Gallery/IMG_6803.webp",
-  "/Gallery/17f37fea-9ab7-494f-827f-e84a564406f4.webp",
+  "https://i.postimg.cc/DyT5DbDP/gl-4.webp",
+  "https://i.postimg.cc/05mccCtN/IMG-0779.webp",
+  "https://i.postimg.cc/PJGKdLqh/IMG-0802.webp",
+  "https://i.postimg.cc/W3qXRmTX/IMG-0804.webp",
 ]
 
 const IMAGES_4 = [
-  "/Gallery/IMG_0802.webp",
-  "/Gallery/e-summit_5.webp",
-  "/Gallery/IMG_0804.webp",
-  
+  "https://i.postimg.cc/hGj2sWwF/IMG-0879.webp",
+  "https://i.postimg.cc/fbrBgqnV/IMG-6803.webp",
+  "https://i.postimg.cc/CLsJVxpT/teamphoto.webp", 
+  "https://i.postimg.cc/hPnb5Hj5/IMG-0796.webp",
 ]
 
 export const Gallery = () => {
-  console.log("Gallery component rendered")
-  
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-blue-950 to-black">
       <div className="absolute inset-0 bg-black opacity-30 z-0"></div>
@@ -51,29 +50,6 @@ export const Gallery = () => {
       <div className="absolute inset-0 z-1">
         <SceneCanvas />
       </div>
-
-      {/* <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
-        <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
-            Your{" "}
-            <span className="font-serif font-extralight text-indigo-600">
-              one source
-            </span>
-          </h1>
-        </ContainerAnimated>
-        <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
-            for all your designs
-          </h1>
-        </ContainerAnimated>
-
-        <ContainerAnimated className="my-4">
-          <p className="leading-normal tracking-tight text-gray-600">
-            No waste of time and money, we provide you with
-            <br /> collection of designs to plan your next project.
-          </p>
-        </ContainerAnimated>
-      </ContainerStagger> */}
 
       <div className="relative z-10 container mx-auto px-6 pt-20 flex flex-col items-center justify-start">
         <div className="text-center">
@@ -90,60 +66,49 @@ export const Gallery = () => {
         </div>
       </div>
 
-
-      {/* Temporarily remove the blur overlay to see if it's interfering */}
-      {/* <div 
-        className="pointer-events-none absolute z-10 h-[70vh] w-full"
-        style={{
-          background: "linear-gradient(to right, gray, rebeccapurple, blue)",
-          filter: "blur(84px)",
-          mixBlendMode: "screen",
-        }}
-      /> */}
-
-      <ContainerScroll className="relative min-h-screen">
-        <ContainerSticky className="h-screen scale-100">
-          <GalleryContainer style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <GalleryCol yRange={["-5%", "1%"]} className="-mt-2">
+      <ContainerScroll className="relative h-[350vh]">
+        <ContainerSticky className="h-svh">
+          <GalleryContainer>
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {IMAGES_1.map((imageUrl, index) => (
                 <img
-                  key={`col1-${index}`}
+                  key={index}
                   className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
                   src={imageUrl}
-                  alt={`gallery item column 1 - ${index}`}
+                  alt="gallery item"
                 />
               ))}
             </GalleryCol>
 
-            <GalleryCol className="mt-[-25%]" yRange={["8%", "3%"]}>
+            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
               {IMAGES_2.map((imageUrl, index) => (
                 <img
-                  key={`col2-${index}`}
+                  key={index}
                   className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
                   src={imageUrl}
-                  alt={`gallery item column 2 - ${index}`}
+                  alt="gallery item"
                 />
               ))}
             </GalleryCol>
 
-            <GalleryCol yRange={["-5%", "1%"]} className="-mt-2">
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {IMAGES_3.map((imageUrl, index) => (
                 <img
-                  key={`col3-${index}`}
+                  key={index}
                   className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
                   src={imageUrl}
-                  alt={`gallery item column 3 - ${index}`}
+                  alt="gallery item"
                 />
               ))}
             </GalleryCol>
 
-            <GalleryCol yRange={["2%", "-3%"]} className="-mt-6">
+            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
               {IMAGES_4.map((imageUrl, index) => (
                 <img
-                  key={`col4-${index}`}
+                  key={index}
                   className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
                   src={imageUrl}
-                  alt={`gallery item column 4 - ${index}`}
+                  alt="gallery item"
                 />
               ))}
             </GalleryCol>
