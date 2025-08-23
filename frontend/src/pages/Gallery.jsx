@@ -41,7 +41,7 @@ const IMAGES_4 = [
 
 export const Gallery = () => {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-blue-950 to-black">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-blue-950 to-black overflow-clip">
       <div className="absolute inset-0 bg-black opacity-30 z-0"></div>
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-700 opacity-5 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-600 opacity-5 rounded-full blur-3xl"></div>
@@ -57,18 +57,29 @@ export const Gallery = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-6xl md:text-7xl font-bold pb-4 tracking-tight"
+            className="text-6xl md:text-7xl font-bold tracking-tight"
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400">
               Gallery
             </span>
+
+            {/* Subheading here */}
+          <motion.p
+             initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto py-6 font-semibold"
+            >
+            Snapshots of our memorable journey, where creativity and teamwork bring ideas to life and make an impact.
+          </motion.p>
+            
           </motion.h1>
         </div>
       </div>
 
-      <ContainerScroll className="relative h-[350vh]">
+      <ContainerScroll className="relative h-[250vh]">
         <ContainerSticky className="h-svh">
-          <GalleryContainer>
+          <GalleryContainer className="w-full">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {IMAGES_1.map((imageUrl, index) => (
                 <img
