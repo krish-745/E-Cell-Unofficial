@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react"; 
+import { ScrollProgress } from "./magicui/scroll-progress";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,6 +100,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <ScrollProgress className="top-14"/>
     </nav>
+    
   );
 }
