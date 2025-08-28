@@ -77,10 +77,6 @@ export default function Hero() {
 
 <TextType 
   text={["Innovate.", "Impact.", "Inspire."]}
-  typingSpeed={75}
-  pauseDuration={1200}
-  showCursor={true}
-  cursorCharacter="|"
 />
 
           </motion.h1>

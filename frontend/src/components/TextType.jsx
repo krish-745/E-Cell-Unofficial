@@ -8,7 +8,7 @@ const TextType = ({
   text,
   as: Component = "div",
   typingSpeed = 50,
-  initialDelay = 0,
+  initialDelay = 500,
   pauseDuration = 2000,
   deletingSpeed = 30,
   loop = true,
@@ -30,6 +30,8 @@ const TextType = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(!startOnVisible);
+  const [isReady, setIsReady] = useState(false); // ✅ controls initial delay
+
   const cursorRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -46,6 +48,7 @@ const TextType = ({
     return textColors[currentTextIndex % textColors.length];
   };
 
+  // Start only when visible
   useEffect(() => {
     if (!startOnVisible || !containerRef.current) return;
 
@@ -64,7 +67,18 @@ const TextType = ({
     return () => observer.disconnect();
   }, [startOnVisible]);
 
+  // Initial delay before **anything shows**
   useEffect(() => {
+    if (!isVisible) return;
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, initialDelay);
+    return () => clearTimeout(timer);
+  }, [initialDelay, isVisible]);
+
+  // Cursor blinking animation
+  useEffect(() => {
+    if (!isReady) return; // ✅ cursor also waits
     if (showCursor && cursorRef.current) {
       gsap.set(cursorRef.current, { opacity: 1 });
       gsap.to(cursorRef.current, {
@@ -75,9 +89,11 @@ const TextType = ({
         ease: "power2.inOut",
       });
     }
-  }, [showCursor, cursorBlinkDuration]);
+  }, [isReady, showCursor, cursorBlinkDuration]);
 
+  // Typing logic
   useEffect(() => {
+    if (!isReady) return; // ✅ typing waits
     if (!isVisible) return;
 
     let timeout;
@@ -86,53 +102,38 @@ const TextType = ({
       ? currentText.split("").reverse().join("")
       : currentText;
 
-    const executeTypingAnimation = () => {
-      if (isDeleting) {
-        if (displayedText === "") {
-          setIsDeleting(false);
-          if (currentTextIndex === textArray.length - 1 && !loop) {
-            return;
-          }
+    if (isDeleting) {
+      if (displayedText === "") {
+        setIsDeleting(false);
 
-          if (onSentenceComplete) {
-            onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
-          }
+        if (currentTextIndex === textArray.length - 1 && !loop) return;
 
-          setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
-          setCurrentCharIndex(0);
-          timeout = setTimeout(() => { }, pauseDuration);
-        } else {
-          timeout = setTimeout(() => {
-            setDisplayedText((prev) => prev.slice(0, -1));
-          }, deletingSpeed);
+        if (onSentenceComplete) {
+          onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
         }
+
+        setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
+        setCurrentCharIndex(0);
+        timeout = setTimeout(() => {}, pauseDuration);
       } else {
-        if (currentCharIndex < processedText.length) {
-          timeout = setTimeout(
-            () => {
-              setDisplayedText(
-                (prev) => prev + processedText[currentCharIndex]
-              );
-              setCurrentCharIndex((prev) => prev + 1);
-            },
-            variableSpeed ? getRandomSpeed() : typingSpeed
-          );
-        } else if (textArray.length > 1) {
-          timeout = setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseDuration);
-        }
+        timeout = setTimeout(() => {
+          setDisplayedText((prev) => prev.slice(0, -1));
+        }, deletingSpeed);
       }
-    };
-
-    if (currentCharIndex === 0 && !isDeleting && displayedText === "") {
-      timeout = setTimeout(executeTypingAnimation, initialDelay);
     } else {
-      executeTypingAnimation();
+      if (currentCharIndex < processedText.length) {
+        timeout = setTimeout(() => {
+          setDisplayedText((prev) => prev + processedText[currentCharIndex]);
+          setCurrentCharIndex((prev) => prev + 1);
+        }, variableSpeed ? getRandomSpeed() : typingSpeed);
+      } else if (textArray.length > 1) {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseDuration);
+      }
     }
 
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     currentCharIndex,
     displayedText,
@@ -143,16 +144,18 @@ const TextType = ({
     textArray,
     currentTextIndex,
     loop,
-    initialDelay,
     isVisible,
     reverseMode,
     variableSpeed,
     onSentenceComplete,
+    isReady, // ✅ key: wait for delay
   ]);
 
   const shouldHideCursor =
     hideCursorWhileTyping &&
     (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
+
+  if (!isReady) return null; // ✅ render nothing until delay is done
 
   return createElement(
     Component,
@@ -161,15 +164,15 @@ const TextType = ({
       className: `text-type ${className}`,
       ...props,
     },
-    <span
-      className="text-type__content bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400 bg-clip-text text-transparent"
-    >
+    <span className="text-type__content bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
       {displayedText}
     </span>,
     showCursor && (
       <span
         ref={cursorRef}
-        className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? "text-type__cursor--hidden" : ""}`}
+        className={`text-type__cursor ${cursorClassName} ${
+          shouldHideCursor ? "text-type__cursor--hidden" : ""
+        }`}
       >
         {cursorCharacter}
       </span>
