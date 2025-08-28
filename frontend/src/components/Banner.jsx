@@ -43,7 +43,7 @@ export default function Banner() {
         transition={{ duration: 0.8, delay: 0.1 }}
         className="countdown-banner text-white text-center py-4 px-2 font-semibold shadow-lg mt-16 relative z-10 bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400"
       >
-        <a href="https://www.instagram.com/ecell_iitpatna">🚀 Check out Xplore - E-Cell Freshers Orientation 🎯</a>
+        <a href="https://www.instagram.com/ecell_iitpatna">🚀 Check out Xplore - E-Cell Freshers Orientation Here 🎯</a>
       </motion.div>
     </section>
   );
