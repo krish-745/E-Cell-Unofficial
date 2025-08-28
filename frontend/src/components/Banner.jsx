@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SceneCanvas from "../three/SceneCanvas";
 
+
 export default function Banner() {
   // const eventDate = new Date("2025-08-16T13:30:00+05:30");
   // const today = new Date();
@@ -43,6 +44,7 @@ export default function Banner() {
         transition={{ duration: 0.8, delay: 0.1 }}
         className="countdown-banner text-white text-center py-4 px-2 font-semibold shadow-lg mt-16 relative z-10 bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400"
       >
+       
         <a href="https://www.instagram.com/ecell_iitpatna">🚀 Check out Xplore - E-Cell Freshers Orientation Here 🎯</a>
       </motion.div>
     </section>

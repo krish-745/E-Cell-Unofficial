@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SceneCanvas from "../three/SceneCanvas";
 import { Link } from "react-router-dom";
+import TextType from './TextType';
 // import { useTimer } from "react-timer-hook";
 // import React from "react";
 
@@ -60,6 +61,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-6xl md:text-7xl font-bold pb-4 tracking-tight"
           >
+
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400">
               E-Cell IIT Patna
             </span>
@@ -71,9 +73,16 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-6xl md:text-7xl font-bold mb-8 tracking-tight"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400">
-              Innovate. Impact. Inspire.
-            </span>
+            
+
+<TextType 
+  text={["Innovate.", "Impact.", "Inspire."]}
+  typingSpeed={75}
+  pauseDuration={1200}
+  showCursor={true}
+  cursorCharacter="|"
+/>
+
           </motion.h1>
 
           <motion.p
