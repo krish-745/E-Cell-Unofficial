@@ -15,11 +15,13 @@ const IMAGES_1 = [
   "https://i.postimg.cc/P5K61rSz/17f37fea-9ab7-494f-827f-e84a564406f4.webp",
   "https://i.postimg.cc/Qd6bHYMf/e-summit-5.webp",
   "https://i.postimg.cc/d0pj97rd/e-summit-6.webp",
-  "https://i.postimg.cc/wjx2xY9t/e-summit-7.webp",
+  // "https://i.postimg.cc/wjx2xY9t/e-summit-7.webp",
+  "https://i.postimg.cc/YS8WbtDt/t3vzgse9h66moqqbzglb.webp",
 ]
 
 const IMAGES_2 = [
-  "https://i.postimg.cc/TPpcmjLf/e-summit-8.webp",
+  "https://i.postimg.cc/tTChjsn1/hmzp4iplehinaie4cl7c.webp",
+  // "https://i.postimg.cc/TPpcmjLf/e-summit-8.webp",
   "https://i.postimg.cc/ZRNFsTxQ/e-summit-9.webp",
   "https://i.postimg.cc/bwqCG29w/gl-2.webp",
   "https://i.postimg.cc/rsSjs8d4/gl-3.webp",

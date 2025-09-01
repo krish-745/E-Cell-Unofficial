@@ -359,7 +359,7 @@ const CardSection = ({ title, people, useGrid = false, hoveredId, setHoveredId }
             <div
               className={`transition-all duration-300 transform ${
                 hoveredId && hoveredId !== id
-                  ? "scale-95 grayscale opacity-70"
+                  ? "scale-95 grayscale=0 opacity-70"
                   : "scale-100 grayscale-0 opacity-100"
               }`}
             >

@@ -74,10 +74,13 @@ export default function Hero() {
             className="text-6xl md:text-7xl font-bold mb-8 tracking-tight"
           >
             
+            {/* <TextType 
+              text={["Innovate.", "Impact.", "Inspire."]}
+            /> */}
 
-<TextType 
-  text={["Innovate.", "Impact.", "Inspire."]}
-/>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-400 to-blue-400">
+              Innovate. Impact. Inspire.
+            </span>
 
           </motion.h1>
 
