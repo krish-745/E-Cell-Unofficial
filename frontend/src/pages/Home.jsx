@@ -9,6 +9,7 @@ import Speakers from "../components/Speakers";
 import TeamPhoto from "../components/TeamPhoto";
 import IncubationCenter from "../components/IncubationCenter";
 import Banner from "../components/Banner";
+import MaskedHero from "../components/MaskedHero";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-[5]">
+        <MaskedHero/>
         <Banner />
         <Hero />
         <MissionVision />
